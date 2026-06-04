@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NewsRobot</title>
+    <style>
+        body { margin: 0; font-family: -apple-system, system-ui, sans-serif; background: #f0f2f5; }
+        nav { background: #1a73e8; color: white; padding: 1rem; position: sticky; top: 0; display: flex; justify-content: space-between; align-items: center; }
+        .container { padding: 15px; max-width: 600px; margin: auto; }
+        .card { background: white; margin-bottom: 15px; padding: 15px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); cursor: pointer; }
+        .card:hover { transform: translateY(-2px); transition: 0.2s; }
+        h2 { margin-top: 0; font-size: 1.2rem; }
+    </style>
+</head>
+<body>
+    <nav><strong>NewsRobot AI</strong><span>🔍</span></nav>
+    <div class="container" id="feed">Loading articles...</div>
+    <script>
+        fetch('/api/articles')
+            .then(res => res.json())
+            .then(data => {
+                const feed = document.getElementById('feed');
+                feed.innerHTML = data.map(a => `<div class="card" onclick="location.href='/article/${a.id}'"><h2>${a.title}</h2><small>${a.date}</small></div>`).join('');
+            });
+    </script>
+</body>
+</html>
