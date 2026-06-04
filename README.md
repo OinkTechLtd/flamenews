@@ -1,4 +1,4 @@
-# FlameNews
+# FlameNews (THEME)
 
 Automated article aggregator using Python for crawling and Node.js for delivery.
 
